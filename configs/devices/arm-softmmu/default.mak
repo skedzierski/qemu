@@ -4,6 +4,7 @@
 # CONFIG_TEST_DEVICES=n
 
 CONFIG_ARM_VIRT=y
+CONFIG_SKEDZIER=y
 
 # These are selected by default when TCG is enabled, uncomment them to
 # keep out of the build.
