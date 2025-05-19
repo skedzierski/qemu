@@ -157,4 +157,6 @@ system_ss.add(when: 'CONFIG_LASI', if_true: files('lasi.c'))
 
 # SWIS FFT devices
 
+fftw = dependency('kissfft', modules: ['kissfft::kissfft-double'])
+system_ss.add(when: 'CONFIG_SKEDZIER', if_true: fftw)
 system_ss.add(when: 'CONFIG_SKEDZIER', if_true: files('skedzier_fft.c'))
