@@ -2,6 +2,19 @@
 QEMU README
 ===========
 
+Ważne ten fork używa dodatkowo biblioteki kiss_fft
+
+instrukcja buildu:
+wget https://github.com/mborgerding/kissfft/archive/refs/tags/131.1.0.tar.gz
+cd 131.1.0
+cmake -S . -B build -DKISSFFT_DATATYPE=double -DKISSFFT_STATIC=ON -DKISSFFT_TEST=OFF -DKISSFFT_TOOLS=OFF -DCMAKE_INSTALL_PREFIX=/path/to/kissfft/install
+export CMAKE_PREFIX_PATH=/path/to/kissfft/install
+cmake --build build
+cmake --install build --prefix="/"
+
+i potem wchodzisz do katalogu qemu/build odpalasz skrypt ./config.sh i make -j liczba_rdzeni+1
+
+
 QEMU is a generic and open source machine & userspace emulator and
 virtualizer.
 
