@@ -116,9 +116,10 @@ static void swis_fft_finalize(Object *obj)
 
 static void swis_fft_reset(void* opaque)
 {
-    PRINT_DEBUG("reset!");
     SwisFFTState* s = opaque;
-    memset(s, 0, sizeof(SwisFFTState));
+    memset(s->regs, 0, sizeof(s->regs));
+    s->regs[ID] = 0xbeef;
+    PRINT_DEBUG("reset!");
 }
 
 static void swis_fft_on_reset(void *opaque)
