@@ -90,17 +90,18 @@ static const MemoryRegionOps swis_fft_iomem_ops = {
 
 static void swis_fft_init (Object *obj)
 {
-    PRINT_DEBUG("fft initialized");
+    assert(sizeof(kiss_fft_cpx) == 16);
     SysBusDevice * sbd = SYS_BUS_DEVICE(obj);
     DeviceState *dev = DEVICE(sbd);
     SwisFFTState *s = SWIS_FFT(dev);
     /* TODO: RST# value should be 0. */
     memory_region_init_io(&s->iomem,OBJECT(s),&swis_fft_iomem_ops,s,
-                          "sysbus-skedzier_fft-iomem", 0x100); //@@sizeof(s->regs.u32));
+    "sysbus-skedzier_fft-iomem", 0x100); //@@sizeof(s->regs.u32));
     sysbus_init_mmio(sbd, &s->iomem);
     sysbus_init_irq(sbd,&s->irq);
     qemu_register_reset (swis_fft_on_reset, s);
     swis_fft_reset(s);
+    PRINT_DEBUG("fft initialized");
 }
 
 static void swis_fft_finalize(Object *obj)
